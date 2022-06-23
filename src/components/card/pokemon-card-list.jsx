@@ -1,25 +1,22 @@
 import { useState, useEffect } from "react";
-import { Fragment } from "react";
 import PokemonCard from "./pokemon-card";
-import Pagination from "../layout/pagination";
 import Axios from "axios";
+import Pagination from "../layout/pagination";
 
 function PokemonCardList() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
-  function handlePageClick(data) {
-    let currentPage = data.selected + 1;
-    setCurrentPage(currentPage);
-  }
+  console.log(currentPage);
 
   useEffect(() => {
     async function getAllPokemon() {
       try {
         setIsLoading(true);
         const pokemonArr = [];
-        for (let i = 1; i <= 40; i++) {
+        console.log(pokemonArr);
+        for (let i = 1; i <= 60; i++) {
           const response = await Axios.get(
             `https://pokeapi.co/api/v2/pokemon/${i}`
           );
@@ -33,7 +30,7 @@ function PokemonCardList() {
       }
     }
     getAllPokemon();
-  }, [currentPage]);
+  }, []);
 
   if (isLoading) {
     return <h1>Loading..</h1>;
@@ -54,7 +51,12 @@ function PokemonCardList() {
         ))}
       </div>
       <div>
-        <Pagination dataCount={data} handlePageClick={handlePageClick} />
+        <Pagination
+          data={data}
+          setData={setData}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </div>
   );
