@@ -69,7 +69,7 @@ function PokemonCardDetails({ data }) {
           <img
             alt="img"
             className="absolute inset-0 object-contain w-full h-full lg:left-52"
-            src={data.sprites.front_default}
+            src={data.sprites.other.dream_world.front_default}
           />
         </div>
       </section>

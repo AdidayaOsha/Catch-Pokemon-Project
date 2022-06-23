@@ -7,55 +7,55 @@ function PokemonCard(props) {
   function typesHandler() {
     if (types === "fire") {
       return (
-        <strong className="inline-block px-3 py-1 text-xs font-medium bg-red-400 text-white uppercase">
+        <strong className="inline-block px-3 py-1 text-xs font-medium bg-red-400 text-white italic uppercase">
           {types}
         </strong>
       );
     } else if (types === "grass") {
       return (
-        <strong className="inline-block px-3 py-1 text-xs font-medium bg-green-400 text-white uppercase">
+        <strong className="inline-block px-3 py-1 text-xs font-medium bg-green-400 text-white italic uppercase">
           {types}
         </strong>
       );
     } else if (types === "water") {
       return (
-        <strong className="inline-block px-3 py-1 text-xs font-medium bg-blue-400 text-white uppercase">
+        <strong className="inline-block px-3 py-1 text-xs font-medium bg-blue-400 text-white italic uppercase">
           {types}
         </strong>
       );
     } else if (types === "bug") {
       return (
-        <strong className="inline-block px-3 py-1 text-xs font-medium bg-green-400 text-white uppercase">
+        <strong className="inline-block px-3 py-1 text-xs font-medium bg-green-400 text-white italic uppercase">
           {types}
         </strong>
       );
     } else if (types === "normal") {
       return (
-        <strong className="inline-block px-3 py-1 text-xs font-medium bg-gray-400 text-white uppercase">
+        <strong className="inline-block px-3 py-1 text-xs font-medium bg-gray-400 text-white italic uppercase">
           {types}
         </strong>
       );
     } else if (types === "poison") {
       return (
-        <strong className="inline-block px-3 py-1 text-xs font-medium bg-purple-400 text-white uppercase">
+        <strong className="inline-block px-3 py-1 text-xs font-medium bg-purple-400 text-white italic uppercase">
           {types}
         </strong>
       );
     } else if (types === "fairy") {
       return (
-        <strong className="inline-block px-3 py-1 text-xs font-medium bg-pink-400 text-white uppercase">
+        <strong className="inline-block px-3 py-1 text-xs font-medium bg-pink-400 text-white italic uppercase">
           {types}
         </strong>
       );
     } else if (types === "electric") {
       return (
-        <strong className="inline-block px-3 py-1 text-xs font-medium bg-yellow-400 text-white uppercase">
+        <strong className="inline-block px-3 py-1 text-xs font-medium bg-yellow-400 text-white italic uppercase">
           {types}
         </strong>
       );
     } else if (types === "ground") {
       return (
-        <strong className="inline-block px-3 py-1 text-xs font-medium bg-brown-400 text-white uppercase">
+        <strong className="inline-block px-3 py-1 text-xs font-medium bg-brown-400 text-white italic uppercase">
           {types}
         </strong>
       );
@@ -64,32 +64,34 @@ function PokemonCard(props) {
 
   return (
     <div
-      className="relative block border border-gray-100"
+      className="relative block border-2 border-gray-100 shadow-sm h-1/2"
       href="/product/build-your-own-drone"
     >
       <div className="absolute py-2 rounded-full right-4 top-4">
-        <h1 className="text-gray-300 text-2xl font-bold">#{id}</h1>
+        <h1 className="text-gray-300 text-2xl font-bold italic">#{id}</h1>
       </div>
 
-      <div className="h-56 flex justify-center items-center">
+      <div className="h-32 flex justify-center items-center">
         <img
-          className="object-contain h-full rounded"
+          className="absolute object-contain h-full rounded"
           src={image}
           alt=""
           loading="lazy"
         />
       </div>
 
-      <div className="p-6">
+      <div className="p-6 bg-gray-100 shadow-md">
         {typesHandler()}
 
-        <h5 className="mt-4 text-lg font-bold uppercase">{name}</h5>
+        <h5 className="mt-4 text-lg font-bold uppercase italic">{name}</h5>
 
-        <p className="mt-2 text-xs text-gray-700 uppercase">
-          Tech: <span className="font-bold">{moves}</span>
-        </p>
-
-        <ButtonCardDetail id={id} />
+        <div className="mt-2 text-xs text-gray-700 uppercase flex flex-col">
+          <span className="italic">Tech:</span>
+          <span className="font-bold italic">{moves}</span>
+        </div>
+        <div>
+          <ButtonCardDetail id={id} />
+        </div>
       </div>
     </div>
   );

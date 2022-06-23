@@ -44,13 +44,13 @@ function PokemonList() {
       <div>
         <PokemonLogo />
       </div>
-      <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">
         {data.map((pokemon) => (
           <PokemonCard
             key={pokemon.id}
             id={pokemon.id}
             name={pokemon.name}
-            image={pokemon.sprites.front_default}
+            image={pokemon.sprites.other.dream_world.front_default}
             types={pokemon.types[0].type.name}
             moves={pokemon.moves[pokemon.moves.length - 1].move.name}
           />

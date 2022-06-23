@@ -23,11 +23,13 @@ function ButtonGroup() {
         </svg>
       </button>
 
+      {/* POKEMON BALL */}
       <button
         className="z-20 block p-4 text-blue-700 transition-all bg-blue-100 border-2 border-white rounded-full active:bg-blue-50 hover:scale-150 focus:outline-none focus:ring"
         type="button"
       >
         <img
+          draggable
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/800px-Pokebola-pokeball-png-0.png"
           alt=""
           className="w-10 h-10 hover:animate-bounce"

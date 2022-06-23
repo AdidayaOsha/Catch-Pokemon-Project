@@ -5,9 +5,7 @@ import Axios from "axios";
 
 function PokemonDetailPage() {
   const [data, setData] = useState();
-  console.log(`data: ${data}`);
   const { id } = useParams();
-  console.log(`id: ${id}`);
 
   useEffect(() => {
     async function getPokemonById() {
