@@ -10,7 +10,11 @@ function App() {
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/pokemonlist" element={<PokemonList />} />
+          <Route
+            path="/https://pokeapi.co/api/v2/pokemon/:id"
+            element={<PokemonDetails />}
+          />
+          <Route path="/" element={<PokemonList />} />
         </Routes>
       </Layout>
     </BrowserRouter>

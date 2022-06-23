@@ -53,6 +53,12 @@ function PokemonCard(props) {
           {types}
         </strong>
       );
+    } else if (types === "ground") {
+      return (
+        <strong className="inline-block px-3 py-1 text-xs font-medium bg-brown-400 text-white uppercase">
+          {types}
+        </strong>
+      );
     }
   }
 
@@ -73,14 +79,6 @@ function PokemonCard(props) {
           loading="lazy"
         />
       </div>
-      {/* <div className="">
-        <img
-          className="lg:absolute object-contain w-full h-56 lg:h-72 lg:bottom-40 rounded"
-          src={image}
-          alt=""
-          loading="lazy"
-        />
-      </div> */}
 
       <div className="p-6">
         {typesHandler()}
@@ -91,7 +89,7 @@ function PokemonCard(props) {
           Tech: <span className="font-bold">{moves}</span>
         </p>
 
-        <ButtonCardDetail />
+        <ButtonCardDetail id={id} />
       </div>
     </div>
   );

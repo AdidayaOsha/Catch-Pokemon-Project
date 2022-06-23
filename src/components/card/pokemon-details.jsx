@@ -1,7 +1,13 @@
-import React from "react";
+import PokemonCardDetails from "./pokemon-card-details";
 
-function PokemonDetails() {
-  return <div>PokemonDetails</div>;
+function PokemonDetails(props) {
+  const { data } = props;
+
+  return (
+    <div>
+      <PokemonCardDetails data={data} />
+    </div>
+  );
 }
 
 export default PokemonDetails;

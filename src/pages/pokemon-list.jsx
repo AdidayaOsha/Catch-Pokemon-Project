@@ -1,10 +1,10 @@
 import { Fragment } from "react";
-import PokemonCardList from "../components/card/pokemon-card-list";
+import PokemonLists from "../components/card/pokemon-list";
 
 function PokemonList(props) {
   return (
     <Fragment>
-      <PokemonCardList />
+      <PokemonLists />
     </Fragment>
   );
 }
