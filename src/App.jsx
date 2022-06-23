@@ -1,11 +1,19 @@
 import React from "react";
-import "./index.css";
+import "./styles/index.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/layout/layout";
+import PokemonList from "./pages/pokemon-list";
+import PokemonDetails from "./pages/pokemon-details";
 
 function App() {
   return (
-    <div>
-      <h1 className="text-sm font-bold">Pokemon Project</h1>
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/pokemonlist" element={<PokemonList />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
