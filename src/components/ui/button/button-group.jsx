@@ -1,6 +1,12 @@
-import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import ButtonModal from "./button-modal";
 
-function ButtonGroup() {
+function ButtonGroup({ data }) {
+  console.log(`POKEMON DATA:${data}`);
+  const dispatch = useDispatch();
+
+  function handler() {}
+
   return (
     <div className="flex items-center -space-x-4 hover:space-x-1">
       <button
@@ -24,17 +30,7 @@ function ButtonGroup() {
       </button>
 
       {/* POKEMON BALL */}
-      <button
-        className="z-20 block p-4 text-blue-700 transition-all bg-blue-100 border-2 border-white rounded-full active:bg-blue-50 hover:scale-150 focus:outline-none focus:ring"
-        type="button"
-      >
-        <img
-          draggable
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/800px-Pokebola-pokeball-png-0.png"
-          alt=""
-          className="w-10 h-10 hover:animate-bounce"
-        />
-      </button>
+      <ButtonModal data={data} />
 
       <button
         className="z-30 block p-4 text-red-700 transition-all bg-red-100 border-2 border-white rounded-full hover:scale-110 focus:outline-none focus:ring active:bg-red-50"

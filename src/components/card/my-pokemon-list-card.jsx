@@ -1,79 +1,95 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import Axios from "axios";
+import MyPokemonListCardDetail from "./my-pokemon-list-card-details";
 
 function MyPokemonListCard() {
+  const [data, setData] = useState([]);
+
+  function pokemonMap() {
+    return data.map(({ data }) => (
+      <MyPokemonListCardDetail
+        key={data.id}
+        name={data.name}
+        image={data.sprites.other.dream_world.front_default}
+        types={data.types[0].type.name}
+        moves={data.moves[data.moves.length - 1].move.name}
+      />
+    ));
+  }
+
+  useEffect(() => {
+    async function getPokemonByName() {
+      try {
+        const storagedPokemons = [];
+
+        const pok1 = localStorage.getItem("pokemon1")
+          ? storagedPokemons.push(localStorage.getItem("pokemon1"))
+          : null;
+        const pok2 = localStorage.getItem("pokemon2")
+          ? storagedPokemons.push(localStorage.getItem("pokemon2"))
+          : null;
+        const pok3 = localStorage.getItem("pokemon3")
+          ? storagedPokemons.push(localStorage.getItem("pokemon3"))
+          : null;
+        const pok4 = localStorage.getItem("pokemon4")
+          ? storagedPokemons.push(localStorage.getItem("pokemon4"))
+          : null;
+        const pok5 = localStorage.getItem("pokemon5")
+          ? storagedPokemons.push(localStorage.getItem("pokemon5"))
+          : null;
+        const pok6 = localStorage.getItem("pokemon6")
+          ? storagedPokemons.push(localStorage.getItem("pokemon6"))
+          : null;
+
+        // Multiple API call, forEach? no. Promise all? Yes.
+        const allPokemon = await Promise.all(
+          storagedPokemons.map((pokemon) =>
+            Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+          )
+        );
+        setData(allPokemon);
+      } catch (err) {
+        console.log();
+      }
+    }
+    getPokemonByName();
+  }, []);
+
   return (
     <section>
-      <div class="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:items-stretch">
-          <div class="flex items-center p-8 bg-gray-100 rounded">
-            <div class="mx-auto text-center lg:text-left">
-              <h2 class="text-2xl font-bold">Watches</h2>
+      <div className="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:items-stretch">
+          <div className="flex flex-col items-center p-8 bg-gray-100 rounded-xl">
+            <div>
+              <img
+                className="h-full w-full"
+                src="https://freepngimg.com/thumb/pokemon/37701-7-pokemon-ash-transparent-image.png"
+                alt="img"
+              />
+            </div>
+            <div className="mx-auto text-center lg:text-left">
+              <h2 className="text-2xl font-bold text-center">
+                My Pokemon Lists
+              </h2>
 
-              <p class="mt-4 text-sm text-gray-700 max-w-[45ch]">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos,
-                cupiditate mollitia saepe vitae libero nobis.
-              </p>
+              <h1 className="mt-4 text-xl text-gray-700 max-w-[45ch] text-center">
+                This is my Pokemon List that I've captured so far, and I can
+                release them anytime.
+              </h1>
 
-              <a
-                href="/collections/watches"
-                class="inline-block px-6 py-3 mt-6 text-sm text-white bg-black rounded"
-              >
-                View the Range
-              </a>
+              <div className="flex justify-center">
+                <a
+                  href="/"
+                  className="inline-block px-6 py-3 mt-6 text-sm text-white bg-black rounded"
+                >
+                  Back to Pokédex
+                </a>
+              </div>
             </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-4 lg:col-span-2 lg:grid-cols-3 lg:py-12">
-            <a href="/product/simple-watch" class="block">
-              <div class="aspect-w-1 aspect-h-1">
-                <img
-                  loading="lazy"
-                  alt="Simple Watch"
-                  class="object-cover rounded"
-                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
-                />
-              </div>
-
-              <div class="mt-2">
-                <h5 class="font-medium">Simple Watch</h5>
-
-                <p class="mt-1 text-sm text-gray-700">$150</p>
-              </div>
-            </a>
-
-            <a href="/product/simple-watch" class="block">
-              <div class="aspect-w-1 aspect-h-1">
-                <img
-                  loading="lazy"
-                  alt="Simple Watch"
-                  class="object-cover rounded"
-                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
-                />
-              </div>
-
-              <div class="mt-2">
-                <h5 class="font-medium">Simple Watch</h5>
-
-                <p class="mt-1 text-sm text-gray-700">$150</p>
-              </div>
-            </a>
-
-            <a href="/product/simple-watch" class="block">
-              <div class="aspect-w-1 aspect-h-1">
-                <img
-                  loading="lazy"
-                  alt="Simple Watch"
-                  class="object-cover rounded"
-                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
-                />
-              </div>
-
-              <div class="mt-2">
-                <h5 class="font-medium">Simple Watch</h5>
-
-                <p class="mt-1 text-sm text-gray-700">$150</p>
-              </div>
-            </a>
+          <div className="grid grid-cols-2 gap-4 lg:col-span-2 lg:grid-cols-3 lg:py-12">
+            {pokemonMap()}
           </div>
         </div>
       </div>

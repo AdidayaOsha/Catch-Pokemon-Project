@@ -1,5 +1,6 @@
 import React from "react";
 import ButtonCardDetail from "../ui/button/button-card-detail";
+import { Link } from "react-router-dom";
 
 function PokemonCard(props) {
   const { id, name, image, types, moves } = props;
@@ -71,14 +72,17 @@ function PokemonCard(props) {
         <h1 className="text-gray-300 text-2xl font-bold italic">#{id}</h1>
       </div>
 
-      <div className="h-32 flex justify-center items-center">
+      <Link
+        className="h-32 flex justify-center items-center"
+        to={`https://pokeapi.co/api/v2/pokemon/${id}`}
+      >
         <img
-          className="absolute object-contain h-full rounded"
+          className="absolute object-contain h-full rounded hover:animate-bounce"
           src={image}
           alt=""
           loading="lazy"
         />
-      </div>
+      </Link>
 
       <div className="p-6 bg-gray-100 shadow-md">
         {typesHandler()}

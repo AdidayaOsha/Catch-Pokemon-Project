@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ButtonGroup from "../ui/button/button-group";
 
 function PokemonCardDetails({ data }) {
@@ -61,7 +60,7 @@ function PokemonCardDetails({ data }) {
             </h5>
           </div>
           <div className="flex justify-center my-8">
-            <ButtonGroup />
+            <ButtonGroup data={data} />
           </div>
         </div>
 

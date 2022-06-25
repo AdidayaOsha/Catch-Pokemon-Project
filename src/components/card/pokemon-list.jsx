@@ -44,7 +44,7 @@ function PokemonList() {
       <div>
         <PokemonLogo />
       </div>
-      <div className="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-1 gap-4">
         {data.map((pokemon) => (
           <PokemonCard
             key={pokemon.id}
