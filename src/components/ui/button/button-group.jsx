@@ -1,11 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
 import ButtonModal from "./button-modal";
 
 function ButtonGroup({ data }) {
   console.log(`POKEMON DATA:${data}`);
-  const dispatch = useDispatch();
-
-  function handler() {}
 
   return (
     <div className="flex items-center -space-x-4 hover:space-x-1">

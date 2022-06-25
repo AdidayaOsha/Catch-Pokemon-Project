@@ -4,24 +4,13 @@ import MyPokemonListCardDetail from "./my-pokemon-list-card-details";
 
 function MyPokemonListCard() {
   const [data, setData] = useState([]);
-
-  function pokemonMap() {
-    return data.map(({ data }) => (
-      <MyPokemonListCardDetail
-        key={data.id}
-        name={data.name}
-        image={data.sprites.other.dream_world.front_default}
-        types={data.types[0].type.name}
-        moves={data.moves[data.moves.length - 1].move.name}
-      />
-    ));
-  }
+  const [isReleased, setIsReleased] = useState(false);
+  console.log(isReleased);
 
   useEffect(() => {
     async function getPokemonByName() {
       try {
         const storagedPokemons = [];
-
         const pok1 = localStorage.getItem("pokemon1")
           ? storagedPokemons.push(localStorage.getItem("pokemon1"))
           : null;
@@ -40,8 +29,6 @@ function MyPokemonListCard() {
         const pok6 = localStorage.getItem("pokemon6")
           ? storagedPokemons.push(localStorage.getItem("pokemon6"))
           : null;
-
-        // Multiple API call, forEach? no. Promise all? Yes.
         const allPokemon = await Promise.all(
           storagedPokemons.map((pokemon) =>
             Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
@@ -53,7 +40,20 @@ function MyPokemonListCard() {
       }
     }
     getPokemonByName();
-  }, []);
+  }, [isReleased]);
+
+  function pokemonMap() {
+    return data.map(({ data }) => (
+      <MyPokemonListCardDetail
+        key={data.id}
+        name={data.name}
+        image={data.sprites.other.dream_world.front_default}
+        types={data.types[0].type.name}
+        moves={data.moves[data.moves.length - 1].move.name}
+        setIsReleased={setIsReleased}
+      />
+    ));
+  }
 
   return (
     <section>

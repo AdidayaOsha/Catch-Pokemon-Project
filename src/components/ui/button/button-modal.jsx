@@ -23,7 +23,7 @@ function ButtonModal({ data }) {
       e.preventDefault();
       setIsCatching(true);
       setTimeout(() => {
-        const num = Math.ceil(Math.random() * 2);
+        const num = Math.ceil(Math.random() * 1);
         const escNum = Math.random();
         console.log(num, escNum);
 
@@ -36,21 +36,29 @@ function ButtonModal({ data }) {
           if (!pok1) {
             localStorage.setItem("pokemon1", `${data.name}`);
             console.log(`${data.name} Has Been Captured!`);
+            setTimeout(() => {
+              navigate("/mypokemonlist");
+            }, 1000);
           } else if (!pok2) {
             localStorage.setItem("pokemon2", `${data.name}`);
             console.log(`${data.name} Has Been Captured!`);
+            navigate("/mypokemonlist");
           } else if (!pok3) {
             localStorage.setItem("pokemon3", `${data.name}`);
             console.log(`${data.name} Has Been Captured!`);
+            navigate("/mypokemonlist");
           } else if (!pok4) {
             localStorage.setItem("pokemon4", `${data.name}`);
             console.log(`${data.name} Has Been Captured!`);
+            navigate("/mypokemonlist");
           } else if (!pok5) {
             localStorage.setItem("pokemon5", `${data.name}`);
             console.log(`${data.name} Has Been Captured!`);
+            navigate("/mypokemonlist");
           } else if (!pok6) {
             localStorage.setItem("pokemon6", `${data.name}`);
             console.log(`${data.name} Has Been Captured!`);
+            navigate("/mypokemonlist");
           } else {
             console.log(
               `Your Pokemon Storage is full, release 1 or more Pokemons`
