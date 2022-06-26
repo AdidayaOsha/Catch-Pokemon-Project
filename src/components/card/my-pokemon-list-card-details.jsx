@@ -1,6 +1,6 @@
 import ButtonRelease from "../ui/button/button-release";
 
-function MyPokemonListCardDetail({ name, image, types, setIsReleased }) {
+function MyPokemonListCardDetail({ name, image, types }) {
   return (
     <div>
       <div className="aspect-w-1 aspect-h-1">
@@ -24,7 +24,7 @@ function MyPokemonListCardDetail({ name, image, types, setIsReleased }) {
       </div>
 
       <div className="mt-2">
-        <ButtonRelease name={name} setIsReleased={setIsReleased} />
+        <ButtonRelease name={name} />
       </div>
     </div>
   );

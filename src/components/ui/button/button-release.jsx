@@ -1,66 +1,20 @@
 import React from "react";
-import { toast } from "react-toastify";
 
-function ButtonRelease({ name, setIsReleased }) {
-  function releaseModal() {
-    return (
-      <div>
-        <label for="my-modal-3" class="btn modal-button">
-          open modal
-        </label>
-
-        <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-        <div class="modal">
-          <div class="modal-box relative">
-            <label
-              for="my-modal-3"
-              class="btn btn-sm btn-circle absolute right-2 top-2"
-            >
-              ✕
-            </label>
-            <h3 class="text-lg font-bold">
-              Congratulations random Interner user!
-            </h3>
-            <p class="py-4">
-              You've been selected for a chance to get one year of subscription
-              to use Wikipedia for free!
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+function ButtonRelease({ name }) {
   function release() {
-    try {
-      setTimeout(() => {
-        setIsReleased(true);
-      }, 500);
-      for (let i = 1; i < 6; i++) {
-        const results = localStorage.getItem(`pokemon${i}`);
-        if (results.includes(name)) {
-          localStorage.removeItem(`pokemon${i}`);
-          break;
-        }
+    for (let i = 1; i <= 6; i++) {
+      const results = localStorage.getItem(`pokemon${i}`);
+      if (results === name) {
+        localStorage.removeItem(`pokemon${i}`);
+        break;
       }
-      document.getElementById("my-modal-3").click();
-      toast.success("Pokemon has been released", {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      setIsReleased(false);
-    } catch (err) {
-      setIsReleased(false);
-      console.log(err);
     }
+    document.getElementById(`my-modal-${name}`).click();
+    window.location.reload();
   }
 
   function onCancel() {
-    document.getElementById("my-modal-3").click();
+    document.getElementById(`my-modal-${name}`).click();
   }
 
   return (
@@ -68,18 +22,18 @@ function ButtonRelease({ name, setIsReleased }) {
       <div>
         <div className="flex justify-center">
           <label
-            for="my-modal-3"
+            htmlFor={`my-modal-${name}`}
             class="btn modal-button btn-error text-white btn-sm animate-pulse"
           >
             Release
           </label>
         </div>
 
-        <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+        <input type="checkbox" id={`my-modal-${name}`} class="modal-toggle" />
         <div class="modal">
           <div class="modal-box relative flex flex-col m-auto items-center">
             <label
-              for="my-modal-3"
+              htmlFor={`my-modal-${name}`}
               class="btn btn-sm btn-circle absolute right-2 top-2"
             >
               ✕

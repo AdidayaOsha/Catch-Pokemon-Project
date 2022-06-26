@@ -4,8 +4,6 @@ import MyPokemonListCardDetail from "./my-pokemon-list-card-details";
 
 function MyPokemonListCard() {
   const [data, setData] = useState([]);
-  const [isReleased, setIsReleased] = useState(false);
-  console.log(isReleased);
 
   useEffect(() => {
     async function getPokemonByName() {
@@ -40,7 +38,7 @@ function MyPokemonListCard() {
       }
     }
     getPokemonByName();
-  }, [isReleased]);
+  }, []);
 
   function pokemonMap() {
     return data.map(({ data }) => (
@@ -50,7 +48,6 @@ function MyPokemonListCard() {
         image={data.sprites.other.dream_world.front_default}
         types={data.types[0].type.name}
         moves={data.moves[data.moves.length - 1].move.name}
-        setIsReleased={setIsReleased}
       />
     ));
   }

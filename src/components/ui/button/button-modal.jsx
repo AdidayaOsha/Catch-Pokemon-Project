@@ -68,7 +68,8 @@ function ButtonModal({ data }) {
           } else if (!pok2) {
             localStorage.setItem("pokemon2", `${data.name}`);
             document.getElementById("my-modal-4").click();
-            toast.success("POKEMON CAPTURED!!! Redirecting in 3 seconds...", {
+            navigate("/mypokemonlist");
+            toast.success("POKEMON CAPTURED!!!", {
               position: "top-center",
               autoClose: 1500,
               hideProgressBar: true,
@@ -77,11 +78,6 @@ function ButtonModal({ data }) {
               draggable: true,
               progress: undefined,
             });
-            setTimeout(() => {
-              navigate("/mypokemonlist", {
-                replace: true,
-              });
-            }, 2000);
           } else if (!pok3) {
             localStorage.setItem("pokemon3", `${data.name}`);
             document.getElementById("my-modal-4").click();
