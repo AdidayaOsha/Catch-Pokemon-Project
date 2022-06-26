@@ -1,11 +1,8 @@
-import { data } from "autoprefixer";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 function ButtonModal({ data }) {
-  const [isCaptured, setIsCaptured] = useState("");
   const [isCatching, setIsCatching] = useState(false);
-  console.log(isCatching);
 
   const pok1 = localStorage.getItem("pokemon1");
   const pok2 = localStorage.getItem("pokemon2");
@@ -23,42 +20,136 @@ function ButtonModal({ data }) {
       e.preventDefault();
       setIsCatching(true);
       setTimeout(() => {
-        const num = Math.ceil(Math.random() * 1);
+        const num = Math.ceil(Math.random() * 2);
         const escNum = Math.random();
         console.log(num, escNum);
 
         if (escNum < 0.3) {
-          console.log("The Pokemon Fled!");
+          toast.error("The Pokemon Fled!", {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
           navigate("/");
         } else if (num === 2 && escNum > 0.3) {
+          toast.error("Failed To Capture the Pokemon, Try Again!", {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          document.getElementById("my-modal-4").click();
           console.log("You've Failed To Capture the Pokemon");
         } else if (num === 1 && escNum > 0.3) {
           if (!pok1) {
             localStorage.setItem("pokemon1", `${data.name}`);
-            console.log(`${data.name} Has Been Captured!`);
+            document.getElementById("my-modal-4").click();
+            toast.success("POKEMON CAPTURED!!! Redirecting in 3 seconds...", {
+              position: "top-center",
+              autoClose: 1500,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
             setTimeout(() => {
-              navigate("/mypokemonlist");
-            }, 1000);
+              navigate("/mypokemonlist", {
+                replace: true,
+              });
+            }, 2000);
           } else if (!pok2) {
             localStorage.setItem("pokemon2", `${data.name}`);
-            console.log(`${data.name} Has Been Captured!`);
-            navigate("/mypokemonlist");
+            document.getElementById("my-modal-4").click();
+            toast.success("POKEMON CAPTURED!!! Redirecting in 3 seconds...", {
+              position: "top-center",
+              autoClose: 1500,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            setTimeout(() => {
+              navigate("/mypokemonlist", {
+                replace: true,
+              });
+            }, 2000);
           } else if (!pok3) {
             localStorage.setItem("pokemon3", `${data.name}`);
-            console.log(`${data.name} Has Been Captured!`);
-            navigate("/mypokemonlist");
+            document.getElementById("my-modal-4").click();
+            toast.success("POKEMON CAPTURED!!! Redirecting in 3 seconds...", {
+              position: "top-center",
+              autoClose: 1500,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            setTimeout(() => {
+              navigate("/mypokemonlist", {
+                replace: true,
+              });
+            }, 2000);
           } else if (!pok4) {
             localStorage.setItem("pokemon4", `${data.name}`);
-            console.log(`${data.name} Has Been Captured!`);
-            navigate("/mypokemonlist");
+            document.getElementById("my-modal-4").click();
+            toast.success("POKEMON CAPTURED!!! Redirecting in 3 seconds...", {
+              position: "top-center",
+              autoClose: 1500,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            setTimeout(() => {
+              navigate("/mypokemonlist", {
+                replace: true,
+              });
+            }, 2000);
           } else if (!pok5) {
             localStorage.setItem("pokemon5", `${data.name}`);
-            console.log(`${data.name} Has Been Captured!`);
-            navigate("/mypokemonlist");
+            document.getElementById("my-modal-4").click();
+            toast.success("POKEMON CAPTURED!!! Redirecting in 3 seconds...", {
+              position: "top-center",
+              autoClose: 1500,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            setTimeout(() => {
+              navigate("/mypokemonlist", {
+                replace: true,
+              });
+            }, 2000);
           } else if (!pok6) {
             localStorage.setItem("pokemon6", `${data.name}`);
-            console.log(`${data.name} Has Been Captured!`);
-            navigate("/mypokemonlist");
+            document.getElementById("my-modal-4").click();
+            toast.success("POKEMON CAPTURED!!! Redirecting in 3 seconds...", {
+              position: "top-center",
+              autoClose: 1500,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            setTimeout(() => {
+              navigate("/mypokemonlist", {
+                replace: true,
+              });
+            }, 2000);
           } else {
             console.log(
               `Your Pokemon Storage is full, release 1 or more Pokemons`

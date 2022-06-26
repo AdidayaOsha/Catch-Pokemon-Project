@@ -7,7 +7,7 @@ function MyPokemonListCardDetail({ name, image, types, setIsReleased }) {
         <img
           loading="lazy"
           alt="Simple Watch"
-          className="object-cover rounded"
+          className="object-contain m-auto rounded h-56 w-56"
           src={image}
         />
       </div>
