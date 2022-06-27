@@ -47,7 +47,7 @@ function PokemonList() {
       }
     }
     getAllPokemon();
-  }, [searchGlobal, maxPokemon]);
+  }, [searchGlobal, maxPokemon, itemsPerPage]);
 
   function renderList() {
     const beginIdx = (currentPage - 1) * itemsPerPage;
