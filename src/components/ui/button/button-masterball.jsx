@@ -1,104 +1,45 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useState, useEffect } from "react";
+import ToastError from "../toast/toast-error";
+import ToastSuccess from "../toast/toast-success";
 
 function ButtonMasterball({ data, isCatching, setIsCatching }) {
-  const pok1 = localStorage.getItem("pokemon1");
-  const pok2 = localStorage.getItem("pokemon2");
-  const pok3 = localStorage.getItem("pokemon3");
-  const pok4 = localStorage.getItem("pokemon4");
-  const pok5 = localStorage.getItem("pokemon5");
-  const pok6 = localStorage.getItem("pokemon6");
-
+  const [maxStorage, setMaxStorage] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    function checkStorage() {
+      const storage = [];
+      for (let i = 1; i <= 6; i++) {
+        if (localStorage.getItem(`pokemon${i}`)) {
+          storage.push(`${i}`);
+        }
+      }
+      setMaxStorage(storage);
+    }
+    checkStorage();
+  }, []);
 
   async function handler(e) {
     try {
       e.preventDefault();
       setIsCatching(true);
       setTimeout(() => {
-        if (!pok1) {
-          localStorage.setItem("pokemon1", `${data.name}`);
-          document.getElementById("my-modal-3").click();
+        if (maxStorage.length === 6) {
           navigate("/mypokemonlist");
-          toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else if (!pok2) {
-          localStorage.setItem("pokemon2", `${data.name}`);
-          document.getElementById("my-modal-3").click();
-          navigate("/mypokemonlist");
-          toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else if (!pok3) {
-          localStorage.setItem("pokemon3", `${data.name}`);
-          document.getElementById("my-modal-3").click();
-          navigate("/mypokemonlist");
-          toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else if (!pok4) {
-          localStorage.setItem("pokemon4", `${data.name}`);
-          document.getElementById("my-modal-3").click();
-          navigate("/mypokemonlist");
-          toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else if (!pok5) {
-          localStorage.setItem("pokemon5", `${data.name}`);
-          document.getElementById("my-modal-3").click();
-          navigate("/mypokemonlist");
-          toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else if (!pok6) {
-          localStorage.setItem("pokemon6", `${data.name}`);
-          document.getElementById("my-modal-3").click();
-          navigate("/mypokemonlist");
-          toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        } else {
-          console.log(
-            `Your Pokemon Storage is full, release 1 or more Pokemons`
+          ToastError(
+            "Pokemon Storage full, release 1 or more Pokémon to be able to catch again."
           );
+        } else {
+          for (let i = 1; i <= 6; i++) {
+            if (!localStorage.getItem(`pokemon${i}`)) {
+              localStorage.setItem(`pokemon${i}`, `${data.name}`);
+              document.getElementById("my-modal-4").click();
+              break;
+            }
+          }
+          navigate("/mypokemonlist");
+          ToastSuccess(`${data.name.toUpperCase()} CAPTURED!!!`);
         }
         setIsCatching(false);
       }, 3000);
@@ -124,13 +65,19 @@ function ButtonMasterball({ data, isCatching, setIsCatching }) {
       <input type="checkbox" id="my-modal-3" className="modal-toggle" />
       <label htmlFor="my-modal-3" className="modal cursor-pointer">
         <label className="modal-box relative" htmlFor="">
-          <div>
+          <div className="space-y-2">
             <h1 className="text-lg font-bold">
-              You're gonna catch <span>{data.name}</span> with a MASTER BALL
+              You're gonna catch{" "}
+              <span className="font-bold uppercase text-red-400">
+                {data.name}
+              </span>{" "}
+              with a MASTER BALL
             </h1>
             <h1 className="uppercase">
-              This ball has a <span className="font-bold">100% GUARANTEED</span>{" "}
-              chance of success
+              This ball has a{" "}
+              <span className="font-bold">
+                100% GUARANTEED Catch Chance Rate
+              </span>{" "}
             </h1>
             <h3 className="text-lg font-bold">Throw the Master Ball?</h3>
           </div>

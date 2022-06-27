@@ -51,7 +51,7 @@ function MyPokemonListCard() {
           <div className="flex flex-col items-center p-8 bg-gray-100 rounded-xl">
             <div>
               <img
-                className="h-full w-full"
+                className="lg:h-full lg:w-full md:w-60 md:h-80 w-32 h-40"
                 src="https://freepngimg.com/thumb/pokemon/37701-7-pokemon-ash-transparent-image.png"
                 alt="img"
               />
@@ -61,7 +61,7 @@ function MyPokemonListCard() {
                 My Pokemon Lists
               </h2>
 
-              <h1 className="mt-4 text-xl text-gray-700 max-w-[45ch] text-center">
+              <h1 className="mt-4 lg:text-xl md:text-lg text-sm text-gray-700 max-w-[45ch] text-center">
                 This is my Pokemon List that I've captured, I can only hold{" "}
                 <span className="font-bold">6 </span>
                 Pokemon so I have to release one if I want to catch Pokemon

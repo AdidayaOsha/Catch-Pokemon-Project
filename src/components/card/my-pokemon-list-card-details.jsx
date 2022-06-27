@@ -5,7 +5,7 @@ function MyPokemonListCardDetail({ name, image, types }) {
     <div>
       <div className="aspect-w-1 aspect-h-1">
         <img
-          loading="lazy"
+          loading="eager"
           alt="img"
           className="object-contain m-auto rounded h-56 w-56"
           src={image}
@@ -18,7 +18,7 @@ function MyPokemonListCardDetail({ name, image, types }) {
           src="http://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/7912daab5bb1496.png"
           alt="HP Bar"
         />
-        <p className="font-bold uppercase bg-purple-600 w-1/3 m-auto text-white">
+        <p className="font-bold uppercase bg-black w-1/3 m-auto text-white">
           {types}
         </p>
         <h1 className="font-bold uppercase">{name}</h1>

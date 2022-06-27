@@ -3,8 +3,6 @@ import ButtonMasterball from "./button-masterball";
 import ButtonUltraball from "./button-ultraball";
 
 function ButtonGroup({ data, isCatching, setIsCatching }) {
-  console.log(`POKEMON DATA:${data}`);
-
   return (
     <div className="flex items-center -space-x-4 hover:space-x-1">
       <ButtonMasterball

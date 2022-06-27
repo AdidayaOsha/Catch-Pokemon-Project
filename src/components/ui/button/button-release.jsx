@@ -3,8 +3,7 @@ import React from "react";
 function ButtonRelease({ name }) {
   function release() {
     for (let i = 1; i <= 6; i++) {
-      const results = localStorage.getItem(`pokemon${i}`);
-      if (results === name) {
+      if (localStorage.getItem(`pokemon${i}`) === name) {
         localStorage.removeItem(`pokemon${i}`);
         break;
       }
@@ -23,23 +22,27 @@ function ButtonRelease({ name }) {
         <div className="flex justify-center">
           <label
             htmlFor={`my-modal-${name}`}
-            class="btn modal-button btn-error text-white btn-sm animate-pulse"
+            className="btn modal-button btn-error text-white btn-sm animate-pulse"
           >
             Release
           </label>
         </div>
 
-        <input type="checkbox" id={`my-modal-${name}`} class="modal-toggle" />
-        <div class="modal">
-          <div class="modal-box relative flex flex-col m-auto items-center">
+        <input
+          type="checkbox"
+          id={`my-modal-${name}`}
+          className="modal-toggle"
+        />
+        <div className="modal">
+          <div className="modal-box relative flex flex-col m-auto items-center">
             <label
               htmlFor={`my-modal-${name}`}
-              class="btn btn-sm btn-circle absolute right-2 top-2"
+              className="btn btn-sm btn-circle absolute right-2 top-2"
             >
               ✕
             </label>
-            <h3 class="text-lg font-bold">Release Pokemon?</h3>
-            <p class="py-2">You will be able to catch it again anytime.</p>
+            <h3 className="text-lg font-bold">Release {name}?</h3>
+            <p className="py-2">You will be able to catch it again anytime.</p>
             <div className="space-x-2">
               <button
                 onClick={release}

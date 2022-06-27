@@ -1,18 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import ToastError from "../toast/toast-error";
+import ToastSuccess from "../toast/toast-success";
 
 function ButtonUltraball({ data }) {
   const [isCatching, setIsCatching] = useState(false);
-
-  const pok1 = localStorage.getItem("pokemon1");
-  const pok2 = localStorage.getItem("pokemon2");
-  const pok3 = localStorage.getItem("pokemon3");
-  const pok4 = localStorage.getItem("pokemon4");
-  const pok5 = localStorage.getItem("pokemon5");
-  const pok6 = localStorage.getItem("pokemon6");
-
+  const [maxStorage, setMaxStorage] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    function checkStorage() {
+      const storage = [];
+      for (let i = 1; i <= 6; i++) {
+        if (localStorage.getItem(`pokemon${i}`)) {
+          storage.push(`${i}`);
+        }
+      }
+      setMaxStorage(storage);
+    }
+    checkStorage();
+  }, []);
 
   async function handler(e) {
     try {
@@ -22,119 +29,28 @@ function ButtonUltraball({ data }) {
         const num = Math.ceil(Math.random() * 2);
         const ultraNum = Math.ceil(Math.random() * 10);
         const escNum = Math.random();
-        console.log(num, escNum, ultraNum);
 
         if (escNum < 0.3) {
-          toast.error("The Pokemon Fled!", {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          ToastError("The Pokemon Fled!");
           navigate("/");
         } else if (num === 2 && escNum > 0.3) {
-          toast.error("Failed To Capture the Pokemon, Try Again!", {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          ToastError("Failed To Capture the Pokemon, Try Again!");
           document.getElementById("my-modal-6").click();
-          console.log("You've Failed To Capture the Pokemon");
-        } else if (ultraNum > 3 && escNum > 0.3) {
-          if (!pok1) {
-            localStorage.setItem("pokemon1", `${data.name}`);
-            document.getElementById("my-modal-6").click();
-            navigate("/mypokemonlist");
-            toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
-              position: "top-center",
-              autoClose: 1500,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          } else if (!pok2) {
-            localStorage.setItem("pokemon2", `${data.name}`);
-            document.getElementById("my-modal-6").click();
-            navigate("/mypokemonlist");
-            toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
-              position: "top-center",
-              autoClose: 1500,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          } else if (!pok3) {
-            localStorage.setItem("pokemon3", `${data.name}`);
-            document.getElementById("my-modal-6").click();
-            toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
-              position: "top-center",
-              autoClose: 1500,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-            setTimeout(() => {
-              navigate("/mypokemonlist", {
-                replace: true,
-              });
-            }, 2000);
-          } else if (!pok4) {
-            localStorage.setItem("pokemon4", `${data.name}`);
-            document.getElementById("my-modal-6").click();
-            navigate("/mypokemonlist");
-            toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
-              position: "top-center",
-              autoClose: 1500,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          } else if (!pok5) {
-            localStorage.setItem("pokemon5", `${data.name}`);
-            document.getElementById("my-modal-6").click();
-            navigate("/mypokemonlist");
-            toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
-              position: "top-center",
-              autoClose: 1500,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          } else if (!pok6) {
-            localStorage.setItem("pokemon6", `${data.name}`);
-            document.getElementById("my-modal-6").click();
-            navigate("/mypokemonlist");
-            toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
-              position: "top-center",
-              autoClose: 1500,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          } else {
-            console.log(
-              `Your Pokemon Storage is full, release 1 or more Pokemons`
-            );
+        } else if (ultraNum > 3 && escNum > 0.3 && maxStorage.length < 6) {
+          for (let i = 1; i <= 6; i++) {
+            if (!localStorage.getItem(`pokemon${i}`)) {
+              localStorage.setItem(`pokemon${i}`, `${data.name}`);
+              document.getElementById("my-modal-4").click();
+              break;
+            }
           }
+          navigate("/mypokemonlist");
+          ToastSuccess(`${data.name.toUpperCase()} CAPTURED!!!`);
+        } else if (maxStorage.length === 6) {
+          navigate("/mypokemonlist");
+          ToastError(
+            "Pokemon Storage full, release 1 or more Pokémon to be able to catch again."
+          );
         }
         setIsCatching(false);
       }, 3000);
@@ -162,12 +78,18 @@ function ButtonUltraball({ data }) {
         <label className="modal-box relative" htmlFor="">
           <div>
             <h1 className="text-lg font-bold">
-              You're gonna catch <span>{data.name}</span> with an Ultra Ball
+              You're gonna catch{" "}
+              <span className="font-bold uppercase text-red-400">
+                {data.name}
+              </span>{" "}
+              with an Ultra Ball
             </h1>
             <h1 className="uppercase">
-              This ball has <span className="font-bold">70%</span> chance of
-              success
+              This ball has <span className="font-bold">70%</span> catch chance
+              rate.
             </h1>
+            <p className=" py-4">Notes: Pokemon may also flee...</p>
+
             <h3 className="text-lg font-bold">Throw the Ultra Ball?</h3>
           </div>
 

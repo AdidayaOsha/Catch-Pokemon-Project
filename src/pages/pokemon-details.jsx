@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PokemonDetails from "../components/card/pokemon-details";
+import LoadingScreen from "../components/ui/loading/loading-screen";
 import Axios from "axios";
 
 function PokemonDetailPage() {
@@ -18,7 +19,7 @@ function PokemonDetailPage() {
   }, [id]);
 
   if (!data) {
-    return <h1>Loading....</h1>;
+    return <LoadingScreen />;
   }
 
   return (
