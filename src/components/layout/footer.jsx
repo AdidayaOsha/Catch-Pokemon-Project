@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="text-white bg-black lg:grid lg:grid-cols-5">
+    <footer className="text-white bg-black lg:grid lg:grid-cols-5 mt-10">
       <aside className="hidden lg:relative lg:col-span-2 lg:block">
         <img
           className="absolute inset-0 object-cover w-full h-full"

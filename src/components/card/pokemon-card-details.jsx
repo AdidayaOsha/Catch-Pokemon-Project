@@ -1,10 +1,11 @@
+import { useState } from "react";
 import ButtonGroup from "../ui/button/button-group";
+import LoadingScreen from "../ui/loading/loading-screen";
 
 function PokemonCardDetails({ data }) {
-  console.log`data Pokemon: ${data}`;
-
+  const [isCatching, setIsCatching] = useState(false);
   if (!data) {
-    return <h1>Loading....</h1>;
+    return <LoadingScreen />;
   }
 
   function statHandler() {
@@ -60,14 +61,22 @@ function PokemonCardDetails({ data }) {
             </h5>
           </div>
           <div className="flex justify-center my-8">
-            <ButtonGroup data={data} />
+            <ButtonGroup
+              data={data}
+              isCatching={isCatching}
+              setIsCatching={setIsCatching}
+            />
           </div>
         </div>
 
         <div className="absolute bottom-0 left-0 w-full h-80 lg:h-full lg:w-1/3 bg-black">
           <img
             alt="img"
-            className="absolute inset-0 object-contain w-full h-full lg:left-52"
+            className={
+              isCatching
+                ? "absolute inset-0 object-contain w-full h-full lg:left-52 animate-ping"
+                : "absolute inset-0 object-contain w-full h-full lg:left-52"
+            }
             src={data.sprites.other.dream_world.front_default}
           />
         </div>

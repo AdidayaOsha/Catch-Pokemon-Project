@@ -1,29 +1,33 @@
-import ReactPaginate from "react-paginate";
+import React from "react";
 
-function Pagination(props) {
-  const { data, currentPage, setOffset, setCurrentPage } = props;
-  const itemsPerPage = 8;
-
-  const handlePageClick = (e) => {
-    let currentPage = e.selected + 1;
-    setCurrentPage(currentPage);
-    setOffset((currentPage - 1) * itemsPerPage);
-  };
-
+function pagination({ currentPage, prevPage, nextPage, maxPage }) {
   return (
-    <ReactPaginate
-      className="flex justify-center space-x-4 text-red mt-6"
-      previousLabel={"Previous"}
-      nextLabel={"Next"}
-      breakLabel={"..."}
-      pageCount={Math.ceil(data.length / itemsPerPage)}
-      marginPagesDisplayed={3}
-      onPageChange={handlePageClick}
-      activeClassName={
-        "btn-active btn btn-xs hover:bg-accent bg-red-200 rounded-xl text-black border-none animate-bounce"
-      }
-    />
+    <div className="flex flex-row justify-start items-center space-x-2 mb-10">
+      <button
+        onClick={prevPage}
+        className={
+          currentPage === 1
+            ? "btn btn-black btn-sm btn-disabled"
+            : "btn btn-black btn-sm"
+        }
+      >
+        {"<"}
+      </button>
+      <div className="text-center">
+        Page {currentPage} of {maxPage}
+      </div>
+      <button
+        onClick={nextPage}
+        className={
+          currentPage === maxPage
+            ? "btn btn-black btn-sm btn-disabled"
+            : "btn btn-black btn-sm"
+        }
+      >
+        {">"}
+      </button>
+    </div>
   );
 }
 
-export default Pagination;
+export default pagination;

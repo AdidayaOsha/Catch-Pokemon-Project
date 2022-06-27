@@ -39,7 +39,7 @@ function ButtonRelease({ name }) {
               ✕
             </label>
             <h3 class="text-lg font-bold">Release Pokemon?</h3>
-            <p class="py-4">You will be able to catch them again anytime.</p>
+            <p class="py-2">You will be able to catch it again anytime.</p>
             <div className="space-x-2">
               <button
                 onClick={release}

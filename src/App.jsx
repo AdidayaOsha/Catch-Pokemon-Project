@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles/index.css";
 import Layout from "./components/layout/layout";
 import PokemonList from "./pages/pokemon-list";
 import PokemonDetails from "./pages/pokemon-details";
@@ -7,6 +6,7 @@ import MyPokemonList from "./pages/my-pokemon-list";
 import { Fragment } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import "./styles/index.css";
 
 function App() {
   return (

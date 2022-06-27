@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-function ButtonModal({ data }) {
+
+function ButtonPokeball({ data }) {
   const [isCatching, setIsCatching] = useState(false);
 
   const pok1 = localStorage.getItem("pokemon1");
@@ -10,8 +11,6 @@ function ButtonModal({ data }) {
   const pok4 = localStorage.getItem("pokemon4");
   const pok5 = localStorage.getItem("pokemon5");
   const pok6 = localStorage.getItem("pokemon6");
-
-  console.log(`this is ${pok1}, ${pok2}, ${pok3}, ${pok4}, ${pok5}, ${pok6}`);
 
   const navigate = useNavigate();
 
@@ -51,7 +50,8 @@ function ButtonModal({ data }) {
           if (!pok1) {
             localStorage.setItem("pokemon1", `${data.name}`);
             document.getElementById("my-modal-4").click();
-            toast.success("POKEMON CAPTURED!!! Redirecting in 3 seconds...", {
+            navigate("/mypokemonlist");
+            toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
               position: "top-center",
               autoClose: 1500,
               hideProgressBar: true,
@@ -60,16 +60,11 @@ function ButtonModal({ data }) {
               draggable: true,
               progress: undefined,
             });
-            setTimeout(() => {
-              navigate("/mypokemonlist", {
-                replace: true,
-              });
-            }, 2000);
           } else if (!pok2) {
             localStorage.setItem("pokemon2", `${data.name}`);
             document.getElementById("my-modal-4").click();
             navigate("/mypokemonlist");
-            toast.success("POKEMON CAPTURED!!!", {
+            toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
               position: "top-center",
               autoClose: 1500,
               hideProgressBar: true,
@@ -81,7 +76,8 @@ function ButtonModal({ data }) {
           } else if (!pok3) {
             localStorage.setItem("pokemon3", `${data.name}`);
             document.getElementById("my-modal-4").click();
-            toast.success("POKEMON CAPTURED!!! Redirecting in 3 seconds...", {
+            navigate("/mypokemonlist");
+            toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
               position: "top-center",
               autoClose: 1500,
               hideProgressBar: true,
@@ -90,15 +86,11 @@ function ButtonModal({ data }) {
               draggable: true,
               progress: undefined,
             });
-            setTimeout(() => {
-              navigate("/mypokemonlist", {
-                replace: true,
-              });
-            }, 2000);
           } else if (!pok4) {
             localStorage.setItem("pokemon4", `${data.name}`);
             document.getElementById("my-modal-4").click();
-            toast.success("POKEMON CAPTURED!!! Redirecting in 3 seconds...", {
+            navigate("/mypokemonlist");
+            toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
               position: "top-center",
               autoClose: 1500,
               hideProgressBar: true,
@@ -107,15 +99,11 @@ function ButtonModal({ data }) {
               draggable: true,
               progress: undefined,
             });
-            setTimeout(() => {
-              navigate("/mypokemonlist", {
-                replace: true,
-              });
-            }, 2000);
           } else if (!pok5) {
             localStorage.setItem("pokemon5", `${data.name}`);
             document.getElementById("my-modal-4").click();
-            toast.success("POKEMON CAPTURED!!! Redirecting in 3 seconds...", {
+            navigate("/mypokemonlist");
+            toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
               position: "top-center",
               autoClose: 1500,
               hideProgressBar: true,
@@ -124,15 +112,11 @@ function ButtonModal({ data }) {
               draggable: true,
               progress: undefined,
             });
-            setTimeout(() => {
-              navigate("/mypokemonlist", {
-                replace: true,
-              });
-            }, 2000);
           } else if (!pok6) {
             localStorage.setItem("pokemon6", `${data.name}`);
             document.getElementById("my-modal-4").click();
-            toast.success("POKEMON CAPTURED!!! Redirecting in 3 seconds...", {
+            navigate("/mypokemonlist");
+            toast.success(`${data.name.toUpperCase()} CAPTURED!!!`, {
               position: "top-center",
               autoClose: 1500,
               hideProgressBar: true,
@@ -141,11 +125,6 @@ function ButtonModal({ data }) {
               draggable: true,
               progress: undefined,
             });
-            setTimeout(() => {
-              navigate("/mypokemonlist", {
-                replace: true,
-              });
-            }, 2000);
           } else {
             console.log(
               `Your Pokemon Storage is full, release 1 or more Pokemons`
@@ -164,12 +143,12 @@ function ButtonModal({ data }) {
     <div>
       <label
         htmlFor="my-modal-4"
-        className="modal-button z-20 block p-4 text-blue-700 transition-all bg-blue-100 border-2 border-white rounded-full active:bg-blue-50 hover:scale-150 focus:outline-none focus:ring"
+        className="modal-button z-20 block p-2 text-blue-700 transition-all bg-blue-100 border-2 border-white rounded-full active:bg-blue-50 hover:scale-150 focus:outline-none focus:ring"
       >
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/800px-Pokebola-pokeball-png-0.png"
           alt=""
-          className="w-10 h-10 hover:animate-bounce"
+          className="w-16 h-16 hover:animate-bounce"
         />
       </label>
 
@@ -178,7 +157,8 @@ function ButtonModal({ data }) {
         <label className="modal-box relative" htmlFor="">
           <div>
             <h1 className="text-lg font-bold">
-              You're gonna catch <span>{data.name}</span> with Regular Pokeball
+              You're gonna catch <span>{data.name}</span> with a Regular
+              Pokeball
             </h1>
             <h1 className="uppercase">
               This ball has <span className="font-bold">50%</span> chance of
@@ -212,4 +192,4 @@ function ButtonModal({ data }) {
   );
 }
 
-export default ButtonModal;
+export default ButtonPokeball;

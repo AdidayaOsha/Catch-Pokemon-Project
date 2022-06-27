@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import MyPokemonListCardDetail from "./my-pokemon-list-card-details";
+import LoadingItems from "../ui/loading/loading-items";
 
 function MyPokemonListCard() {
   const [data, setData] = useState([]);
@@ -52,6 +53,10 @@ function MyPokemonListCard() {
     ));
   }
 
+  if (!data.length) {
+    return <LoadingItems />;
+  }
+
   return (
     <section>
       <div className="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
@@ -70,8 +75,10 @@ function MyPokemonListCard() {
               </h2>
 
               <h1 className="mt-4 text-xl text-gray-700 max-w-[45ch] text-center">
-                This is my Pokemon List that I've captured so far, and I can
-                release them anytime.
+                This is my Pokemon List that I've captured, I can only hold{" "}
+                <span className="font-bold">6 </span>
+                Pokemon so I have to release one if I want to catch Pokemon
+                again
               </h1>
 
               <div className="flex justify-center">
