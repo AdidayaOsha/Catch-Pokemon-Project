@@ -9,13 +9,12 @@ import Pagination from "../layout/pagination";
 function PokemonList() {
   const [maxPokemon] = useState(151);
   const [itemsPerPage] = useState(20);
-  const [maxPage] = useState(Math.ceil(maxPokemon / itemsPerPage));
+  const [maxPage, setMaxPage] = useState(Math.ceil(maxPokemon / itemsPerPage));
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const search = useSelector((state) => state.pokemon.pokemonName);
-  console.log(search);
+  const searchGlobal = useSelector((state) => state.pokemon.pokemonName);
 
   useEffect(() => {
     async function getAllPokemon() {
@@ -24,11 +23,21 @@ function PokemonList() {
         const pokemonArr = [];
         console.log(pokemonArr);
 
-        for (let i = 1; i <= maxPokemon; i++) {
+        if (searchGlobal) {
           const response = await Axios.get(
-            `https://pokeapi.co/api/v2/pokemon/${i}`
+            `https://pokeapi.co/api/v2/pokemon/${searchGlobal}`
           );
           pokemonArr.push(response.data);
+          setData(pokemonArr);
+          setMaxPage(1);
+        } else {
+          setMaxPage(Math.ceil(maxPokemon / itemsPerPage));
+          for (let i = 1; i <= maxPokemon; i++) {
+            const response = await Axios.get(
+              `https://pokeapi.co/api/v2/pokemon/${i}`
+            );
+            pokemonArr.push(response.data);
+          }
         }
         setData(pokemonArr);
         setIsLoading(false);
@@ -38,7 +47,7 @@ function PokemonList() {
       }
     }
     getAllPokemon();
-  }, [search, maxPokemon]);
+  }, [searchGlobal, maxPokemon]);
 
   function renderList() {
     const beginIdx = (currentPage - 1) * itemsPerPage;

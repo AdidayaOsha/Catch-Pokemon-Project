@@ -19,7 +19,7 @@ function Footer() {
 
               <a
                 className="block text-2xl sm:text-3xl hover:opacity-75"
-                href=""
+                href="/"
               >
                 081298127825
               </a>
@@ -101,19 +101,19 @@ function Footer() {
               <p className="font-medium">Support</p>
 
               <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-300">
-                <a className="hover:opacity-75" href="">
+                <a className="hover:opacity-75" href="/">
                   {" "}
                   Contact{" "}
                 </a>
-                <a className="hover:opacity-75" href="">
+                <a className="hover:opacity-75" href="/">
                   {" "}
                   FAQs{" "}
                 </a>
-                <a className="hover:opacity-75" href="">
+                <a className="hover:opacity-75" href="/">
                   {" "}
                   Live Chat{" "}
                 </a>
-                <a className="hover:opacity-75" href="">
+                <a className="hover:opacity-75" href="/">
                   {" "}
                   Forums{" "}
                 </a>
@@ -124,19 +124,19 @@ function Footer() {
               <p className="font-medium">Products</p>
 
               <nav className="flex flex-col mt-4 space-y-2 text-sm text-gray-300">
-                <a className="hover:opacity-75" href="">
+                <a className="hover:opacity-75" href="/">
                   {" "}
                   1to1 Coaching{" "}
                 </a>
-                <a className="hover:opacity-75" href="">
+                <a className="hover:opacity-75" href="/">
                   {" "}
                   Lesson Plans{" "}
                 </a>
-                <a className="hover:opacity-75" href="">
+                <a className="hover:opacity-75" href="/">
                   {" "}
                   Meal Plans{" "}
                 </a>
-                <a className="hover:opacity-75" href="">
+                <a className="hover:opacity-75" href="/">
                   {" "}
                   Gym Sessions{" "}
                 </a>
@@ -148,15 +148,15 @@ function Footer() {
         <div className="pt-12 mt-12 border-t border-gray-800">
           <div className="text-sm text-gray-300 sm:items-center sm:justify-between sm:flex">
             <div className="flex space-x-3">
-              <a className="hover:opacity-75" href="">
+              <a className="hover:opacity-75" href="/">
                 {" "}
                 Privacy Policy{" "}
               </a>
-              <a className="hover:opacity-75" href="">
+              <a className="hover:opacity-75" href="/">
                 {" "}
                 Terms & Conditions{" "}
               </a>
-              <a className="hover:opacity-75" href="">
+              <a className="hover:opacity-75" href="/">
                 {" "}
                 Returns Policy{" "}
               </a>

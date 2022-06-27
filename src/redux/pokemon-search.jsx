@@ -5,7 +5,8 @@ const init_state = {
 const reducer = (state = init_state, action) => {
   switch (action.type) {
     case "SEARCH_POKEMON":
-      return { ...state, ...action.payload };
+      console.log(action.payload);
+      return { ...state, pokemonName: action.payload };
     case "GET_POKEMON":
       return { ...state, ...action };
     default:

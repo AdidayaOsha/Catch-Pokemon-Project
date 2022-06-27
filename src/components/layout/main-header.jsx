@@ -1,9 +1,22 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 function MainHeader() {
-  // const [search, setSearch] = useState("");
+  const [timer, setTimer] = useState(null);
+
+  function inputChanged(e) {
+    clearTimeout(timer);
+    const newTimer = setTimeout(() => {
+      dispatch({
+        type: "SEARCH_POKEMON",
+        payload: e.target.value,
+      });
+    }, 500);
+
+    setTimer(newTimer);
+  }
+
   const dispatch = useDispatch();
 
   return (
@@ -17,12 +30,7 @@ function MainHeader() {
             </label>
 
             <input
-              onChange={(e) =>
-                dispatch({
-                  type: "SEARCH POKEMON",
-                  payload: e.target.value,
-                })
-              }
+              onChange={inputChanged}
               className="w-full h-10 pl-4 pr-10 text-sm bg-white border-none rounded-lg shadow-sm sm:w-56"
               id="search"
               type="search"
