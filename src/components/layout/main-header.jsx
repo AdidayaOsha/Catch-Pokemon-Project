@@ -72,30 +72,26 @@ function MainHeader() {
                   />
                 </svg>
               </button>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-row">
                 <Link
                   to={"/mypokemonlist"}
                   className="block p-2.5 text-gray-600 bg-white rounded-lg hover:text-gray-700 shrink-0 shadow-sm"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                    />
-                  </svg>
-                  <h1 className="italic flex text-center items-center">
-                    My Pokemon List
-                  </h1>
+                  <div className="flex">
+                    <div>
+                      <img
+                        src="https://i.pinimg.com/736x/50/0a/73/500a73fdf94ffc1c2c9cf7fd80ca51ae.jpg"
+                        alt=""
+                        className="w-10 h-10"
+                      />
+                    </div>
+
+                    <div className="m-auto">
+                      <h1 className="italic flex text-center items-center">
+                        My Pokémon
+                      </h1>
+                    </div>
+                  </div>
                 </Link>
               </div>
             </div>

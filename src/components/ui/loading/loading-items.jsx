@@ -4,7 +4,7 @@ function LoadingItems() {
       <div className="flex m-auto justify-center items-center py-20">
         <div>
           <h1 className="text-center items-center font-bold text-2xl">
-            No Pokemons In Storage..
+            No Pokémons In Storage..
           </h1>
           <div>
             <a

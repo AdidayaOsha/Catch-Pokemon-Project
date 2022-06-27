@@ -10,24 +10,11 @@ function MyPokemonListCard() {
     async function getPokemonByName() {
       try {
         const storagedPokemons = [];
-        const pok1 = localStorage.getItem("pokemon1")
-          ? storagedPokemons.push(localStorage.getItem("pokemon1"))
-          : null;
-        const pok2 = localStorage.getItem("pokemon2")
-          ? storagedPokemons.push(localStorage.getItem("pokemon2"))
-          : null;
-        const pok3 = localStorage.getItem("pokemon3")
-          ? storagedPokemons.push(localStorage.getItem("pokemon3"))
-          : null;
-        const pok4 = localStorage.getItem("pokemon4")
-          ? storagedPokemons.push(localStorage.getItem("pokemon4"))
-          : null;
-        const pok5 = localStorage.getItem("pokemon5")
-          ? storagedPokemons.push(localStorage.getItem("pokemon5"))
-          : null;
-        const pok6 = localStorage.getItem("pokemon6")
-          ? storagedPokemons.push(localStorage.getItem("pokemon6"))
-          : null;
+        for (let i = 1; i <= 6; i++) {
+          if (localStorage.getItem(`pokemon${i}`)) {
+            storagedPokemons.push(localStorage.getItem(`pokemon${i}`));
+          }
+        }
         const allPokemon = await Promise.all(
           storagedPokemons.map((pokemon) =>
             Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
