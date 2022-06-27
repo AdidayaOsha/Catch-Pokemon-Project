@@ -29,6 +29,7 @@ function PokemonList() {
           );
           pokemonArr.push(response.data);
           setData(pokemonArr);
+          setCurrentPage(1);
           setMaxPage(1);
         } else {
           setMaxPage(Math.ceil(maxPokemon / itemsPerPage));

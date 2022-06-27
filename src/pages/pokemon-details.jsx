@@ -9,6 +9,10 @@ function PokemonDetailPage() {
   const { id } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     async function getPokemonById() {
       const response = await Axios.get(
         `https://pokeapi.co/api/v2/pokemon/${id}`
