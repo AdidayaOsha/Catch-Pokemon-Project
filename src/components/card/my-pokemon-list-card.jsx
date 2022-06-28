@@ -5,6 +5,7 @@ import LoadingItems from "../ui/loading/loading-items";
 
 function MyPokemonListCard() {
   const [data, setData] = useState([]);
+  const [trigger, setTrigger] = useState("");
 
   useEffect(() => {
     async function getPokemonByName() {
@@ -26,7 +27,7 @@ function MyPokemonListCard() {
       }
     }
     getPokemonByName();
-  }, []);
+  }, [trigger]);
 
   function pokemonMap() {
     return data.map(({ data }) => (
@@ -36,6 +37,7 @@ function MyPokemonListCard() {
         image={data.sprites.other.dream_world.front_default}
         types={data.types[0].type.name}
         moves={data.moves[data.moves.length - 1].move.name}
+        setTrigger={setTrigger}
       />
     ));
   }

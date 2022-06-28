@@ -1,15 +1,17 @@
 import React from "react";
+import ToastSuccess from "../toast/toast-success";
 
-function ButtonRelease({ name }) {
+function ButtonRelease({ name, setTrigger }) {
   function release() {
     for (let i = 1; i <= 6; i++) {
       if (localStorage.getItem(`pokemon${i}`) === name) {
         localStorage.removeItem(`pokemon${i}`);
+        setTrigger(`${name}, number ${i}`);
+        ToastSuccess(`${name.toUpperCase()} has been released!`);
         break;
       }
     }
     document.getElementById(`my-modal-${name}`).click();
-    window.location.reload();
   }
 
   function onCancel() {

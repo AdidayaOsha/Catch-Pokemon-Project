@@ -21,7 +21,6 @@ function PokemonList() {
       try {
         setIsLoading(true);
         const pokemonArr = [];
-        console.log(pokemonArr);
 
         if (searchGlobal) {
           const response = await Axios.get(

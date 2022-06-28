@@ -26,17 +26,16 @@ function ButtonUltraball({ data }) {
       e.preventDefault();
       setIsCatching(true);
       setTimeout(() => {
-        const num = Math.ceil(Math.random() * 2);
-        const ultraNum = Math.ceil(Math.random() * 10);
+        const num = Math.ceil(Math.random() * 10);
         const escNum = Math.random();
 
         if (escNum < 0.3) {
           ToastError("The Pokemon Fled!");
           navigate("/");
-        } else if (num === 2 && escNum > 0.3) {
+        } else if (num <= 3 && escNum > 0.3) {
           ToastError("Failed To Capture the Pokemon, Try Again!");
           document.getElementById("my-modal-6").click();
-        } else if (ultraNum > 3 && escNum > 0.3 && maxStorage.length < 6) {
+        } else if (num > 3 && escNum > 0.3 && maxStorage.length < 6) {
           for (let i = 1; i <= 6; i++) {
             if (!localStorage.getItem(`pokemon${i}`)) {
               localStorage.setItem(`pokemon${i}`, `${data.name}`);
